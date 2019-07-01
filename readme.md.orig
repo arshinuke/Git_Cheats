@@ -3,20 +3,11 @@ sfasdfasdfsadf
 asfdsfasfasdf
 asfsafasfsdf
 
-
-<<<<<<< HEAD
-marcopolo
-
-marcopoli1
-
-
-testasfdasdf
-
-
 # Testing merge conflict
-
 test1
 test2
+<<<<<<< Updated upstream
+=======
 test3
 just another dev
 tsdf'''werest4
@@ -24,9 +15,7 @@ test5
 \
 sdfasdf
 
-=======
-#newmaregeconflict
-sdfasdf
-sadfasdf
-asdfasdf
->>>>>>> updates-bad
+
+#stashing check
+sdfasfsadf
+>>>>>>> Stashed changes
