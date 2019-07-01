@@ -1,52 +1,28 @@
 ### My Git Cheat Sheet###
 Cheat sheet for git
 
-/* 
- * Set up your Git configuration 
- */
+
+/*  * Set up your Git configuration  */
 git config --global user.email "you@yourdomain.com"
 git config --global user.name "Your Name"
 git config --global core.editor "nano"
 git config --global color.ui true
-/* 
- *See Git configuration 
- */
+/*  *See Git configuration  */
 git config --list
-/*  
- * To initialise a local repository 
- */
+/*   * To initialise a local repository  */
 git init 
-/*  
- * Add a file to the repo 
- */
+/*   * Add a file to the repo  */
 git add <filename>
-/*  
- * Add all the files to the repo 
- */
+/*   * Add all the files to the repo  */
 git add .
-/* 
- * Commit the change to git 
- */
+/*  * Commit the change to git  */
 git commit -m "Message about the change goes here" <filename>
-/* 
- * Commit all changes to git of muliple files - no filenames needed
- */
+/*  * Commit all changes to git of muliple files - no filenames needed */
 git commit -am "Message about the change goes here"
-/*  
- * See the commits in a historical linear fashion
- */
+/*   * See the commits in a historical linear fashion */
 git log 
-/*  
- * Git has a 3 Tier Architecture:  Working - Staging - Repo
- *
- * Changes to files are put in a Checksum SHA-1 hash 40digit value containing parent hash, author and message.
- *
- * HEAD is the latest commit of the checked out branch 
- */
- 
-/*  
- * Basic Commands  
- */
+/*   * Git has a 3 Tier Architecture:  Working - Staging - Repo * * Changes to files are put in a Checksum SHA-1 hash 40digit value containing parent hash, author and message. * * HEAD is the latest commit of the checked out branch  */ 
+/*   * Basic Commands   */
 git status  /*  the command 'git status' tells which files are not added or committed from Working to Staging to Repository */
 git commit -m "" /*  Commits and changes to all files that are in Staging into Repo  */
 git diff /*  show changes between Working and Local Repo, no file supplied shows all files  */
@@ -59,30 +35,19 @@ git checkout -- file.txt /*  restore Repo file to Working Directory using curren
 git reset --soft HEAD^ /* restore repo file to staging */
 git reset HEAD file.txt /*  Move a Stage file out of Stage back to Working */
 git commit --amend -m "message" file.txt /* Change last commit to Repo (only last one can change) */
-/* Reverting --soft --mixed --hard will go back to previous commits*/
-git log /* gets the sha1s so you can see the coomits where you want revert  back to  */
+/* Reverting --soft --mixed --hard will go back to previous commits*/git log /* gets the sha1s so you can see the coomits where you want revert  back to  */
 git reset --soft sha /* changes Repo but not Staging or Working */
 git reset --mixed sha /* changes Repo and Staging but not Working */
 git reset --hard sha /* changes all 3 Tiers */
 git clean -f /* remove untracked files from Working  */
 .gitignore /* ignores files to track in Working / track the .gitignore file */
-Global Ignore /* create in home folder  */ 
-.gitignore_global
-/* Add in  */
-.DS_Store
-.Trashes
-.Spotlight_V100
+Global Ignore /* create in home folder  */ .gitignore_global/* Add in  */.DS_Store.Trashes.Spotlight_V100
 git config --global core.excludesfile ~/.gitignore_global /* add to gitconfig */
 /* Stop tracking changes */
 git rm --cached file.txt /* leaves copy in Repo and Working */
 /* Track Folders changes
 Add an invisble file to a folder like .gitkeeper then add and commit */
-/* Commit Log  */
-git ls-tree HEAD
-git ls-tree master
-git log --oneline
-git log --author="Neil"
-git log --grep="temp"
+/* Commit Log  */git ls-tree HEADgit ls-tree mastergit log --onelinegit log --author="Neil"git log --grep="temp"
 /* Show Commits */
 git show dc094cb /*  show SHA1 */
 /* Compare Commits */
@@ -115,13 +80,7 @@ git stash pop stash@{0} /*  restores the stash deletes the tash */
 git stash apply stash@{0} /*  restores the stash and keeps the stash */
 git stash clear /*  removes all stash */
 git stash drop stash@{0}
-/* 
- * Remotes
- * You can push and fetch to the remote server, merge any differences - then push any new to the remote - 3 branches work remote server branch, local origin master and local master
- *
- * Create a repo in GitHub, then add that remote to your local repo 
- * You will need to add a SSH key from your local machine and store it in GitHub - ref: https://help.github.com/articles/adding-a-new-ssh-key-to-your-github-account/
- */
+/*  * Remotes * You can push and fetch to the remote server, merge any differences - then push any new to the remote - 3 branches work remote server branch, local origin master and local master * * Create a repo in GitHub, then add that remote to your local repo  * You will need to add a SSH key from your local machine and store it in GitHub - ref: https://help.github.com/articles/adding-a-new-ssh-key-to-your-github-account/ */
 git remote add origin https://github.com/neilgee/genesischild.git /*  origin can be named whatever followed by the remote */
 git remote /* to show all remotes */
 git remote show origin /*to see remote URL*/
@@ -136,9 +95,7 @@ git push
 git push origin newbranch /* Push a branch to a remote */
 /* Fetch changes from a cloned Repo */
 git fetch origin /*  Pulls down latest committs from remote origin/master not origin, also pull down any branches pushed to Repo
-Fetch before you work
-Fetch before you pull
-Fetch often */
+Fetch before you workFetch before you pullFetch often */
 /* Merge with origin/master */
 git merge origin/master
 git pull /* you can also do git pull which is = git fetch + git merge
@@ -155,67 +112,27 @@ git checkout path-to-file /*restores a file before it is staged */
 git reset HEAD path-to-file /*if it is staged - restores a file from last commit and then git checkout path-to-file */
 git checkout HEAD^ path-to-file /*if is staged and committed - restores from last commit */
 git reset --hard HEAD^ /*restore prior commit */
-/*Keeping the local synced with the origin after the local is reset
- * ref  http://stackoverflow.com/questions/17667023/git-how-to-reset-origin-master-to-a-commit
- */
+/*Keeping the local synced with the origin after the local is reset * ref  http://stackoverflow.com/questions/17667023/git-how-to-reset-origin-master-to-a-commit */
 git push --force origin master
 git rm --cached filetoremove /* Removes a file that is committed from repo but leaves it still locally - handy when you've added something that you don't want tracked */
-/* Undo last push to github - below forces  commit entered in to overwrite remote - so in case below origin is local and master is remote*/
-git push -f origin last_known_good_commit:master
-/*
- * Tags
- * Adding a Tag
- */
+/* Undo last push to github - below forces  commit entered in to overwrite remote - so in case below origin is local and master is remote*/git push -f origin last_known_good_commit:master
+/* * Tags * Adding a Tag */
 git tag -a v1.0.0 -m "add message here" /*tagging a commit with a version number*/
 git push --tags /* pushes tag info to master remote */
 /*You can checkout a commit and add a tag to that commit by checking out its SHA */
 git checkout f1f4a3d /*checking out a commit - see the commit SHAS by git log */
-/*
- * Changing Tag to different commit 
- */
-/*
- * Deleting the tag
- */
-git tag -d v1.0.0 /*change version number to suit - we are deleting it here*/
-git push origin :refs/tags/v1.0.0 /*push change to remote - change 'origin' to your remote name*/
-/*
- * Adding it again - but this time it would be to the latest commit
- */
-git tag v1.0.0 /*create new tag - change version number to suit */
-git push origin master --tags /* assign to latest commit  - change 'origin' to your remote name*/
-/*
- * Syncing a Fork
- * Have the Fork already created in Github
- * http://stackoverflow.com/questions/7244321/how-do-i-update-a-github-forked-repository
- */
-git clone git@github.com:me/myfork.git myfork /* make a local copy of the fork */
- /* cd into the repo*/
- git remote add upstream https://github.com/theotherguy/theoriginal.git /* make an upstream remote repo */
- git remote -v /* check all the repos */
-git fetch upstream /* get the original repo */
- git checkout master /* ensure you in your local master branch */
+/* * Changing Tag to different commit  */
+/* * Deleting the tag */git tag -d v1.0.0 /*change version number to suit - we are deleting it here*/git push origin :refs/tags/v1.0.0 /*push change to remote - change 'origin' to your remote name*/
+/* * Adding it again - but this time it would be to the latest commit */git tag v1.0.0 /*create new tag - change version number to suit */git push origin master --tags /* assign to latest commit  - change 'origin' to your remote name*/
+/* * Syncing a Fork * Have the Fork already created in Github * http://stackoverflow.com/questions/7244321/how-do-i-update-a-github-forked-repository */
+git clone git@github.com:me/myfork.git myfork /* make a local copy of the fork */ /* cd into the repo*/ git remote add upstream https://github.com/theotherguy/theoriginal.git /* make an upstream remote repo */ git remote -v /* check all the repos */
+git fetch upstream /* get the original repo */ git checkout master /* ensure you in your local master branch */
 git rebase upstream/master /* rewrite your local master branch on top of the upstream */
-git push -f origin master /* needs -f the first time after rebase */
-/* This will result in the fork master branch being 'even' with the original master branch */
-/*
- * Creating an Upstream Branch from an already added branch
- */
+git push -f origin master /* needs -f the first time after rebase *//* This will result in the fork master branch being 'even' with the original master branch */
+/* * Creating an Upstream Branch from an already added branch */
 git push --set-upstream dev master /* Here the remote 'dev' branch is set as Upstream to the local 'master' branch */
 git branch -vv /* Shows which branch is the Upstream, if you need to change just use the preceeding command again */
-/*
- * Checking out a Fork with a certain pull request on a new branch
- */
+/* * Checking out a Fork with a certain pull request on a new branch */
 git checkout -b newbranchname
-git pull https://github.com/username/the-repo.git theirbranchname
-  
-  
-/*
- * Remove Git submodule - https://stackoverflow.com/questions/1759587/un-submodule-a-git-submodule
- */ 
-  git rm --cached submodule_path # delete reference to submodule HEAD (no trailing slash)
-  git rm .gitmodules             # if you have more than one submodules,
-                                 # you need to edit this file instead of deleting!
-  rm -rf submodule_path/.git     # make sure you have backup!!
-  git add submodule_path         # will add files instead of commit reference
-  git commit -m "remove submodule"
+git pull https://github.com/username/the-repo.git theirbranchname    /* * Remove Git submodule - https://stackoverflow.com/questions/1759587/un-submodule-a-git-submodule */   git rm --cached submodule_path # delete reference to submodule HEAD (no trailing slash)  git rm .gitmodules             # if you have more than one submodules,                                 # you need to edit this file instead of deleting!  rm -rf submodule_path/.git     # make sure you have backup!!  git add submodule_path         # will add files instead of commit reference  git commit -m "remove submodule"
 
