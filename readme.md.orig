@@ -4,10 +4,13 @@ asfdsfasfasdf
 asfsafasfsdf
 
 
-#newmaregeconflict
-sdfasdf
-sadfasdf
-asdfasdf
+<<<<<<< HEAD
+marcopolo
+
+marcopoli1
+
+
+testasfdasdf
 
 
 # Testing merge conflict
@@ -20,3 +23,10 @@ tsdf'''werest4
 test5
 \
 sdfasdf
+
+=======
+#newmaregeconflict
+sdfasdf
+sadfasdf
+asdfasdf
+>>>>>>> updates-bad
